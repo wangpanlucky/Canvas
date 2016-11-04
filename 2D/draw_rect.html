@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>绘制矩形</title>
 </head>
-<body>
-$END$
+<body style="float: left">
+<canvas id="drawing" width="200" height="200">practice1</canvas>
+<canvas id="drawing1" width="200" height="200">practice2</canvas>
+
+<script>
+    /*
+     * 与矩形有关的方法包括fillRect(),strokeRect(),clearRect()
+     * 均能接收四个参数:矩形的x坐标,y坐标,矩形的宽度和高度
+     * fillRect()方法对应颜色的填充属性是fillStyle()
+     * strokeRect()方法在画布上绘制的矩形会使用指定的颜色描边,对应的属性是strokeStyle
+     * */
+    var drawing = document.getElementById("drawing");
+    //确定浏览器支持canvas元素
+    if(drawing.getContext){
+        var context = drawing.getContext("2d");
+        //绘制红色矩形
+        context.fillStyle = "#ff0000";
+        context.fillRect(10,10,50,50);
+        //绘制半透明蓝色矩形
+        context.fillStyle = "rgba(0,0,255,0.5)";
+        context.fillRect(30,30,50,50);
+
+        //清除画布上的矩形区域
+        context.clearRect(40,40,10,10);
+    }
+
+    var drawing1 = document.getElementById("drawing1");
+    //确定浏览器支持canvas元素
+    if(drawing1.getContext) {
+        var context1 = drawing1.getContext("2d");
+
+        context1.strokeStyle = "#ff0000";//描边
+        context1.strokeRect(10,10,50,50);
+
+        context1.strokeStyle = "rgba(0,0,255,0.5)";
+        context1.strokeRect(30,30,50,50);
+    }
+
+
+</script>
 </body>
 </html>
