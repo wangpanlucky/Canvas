@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制路径</title>
+</head>
+<body>
+<canvas id="drawing" width="200" height="200">practice1</canvas>
+
+<script>
+    /*
+     * 绘制路径的主要方法:
+     * beginPath():表示要开始绘制新的路径;
+     * arc(x,y,radius,startAngle,endAngle,counterclockwise):以(x,y)为圆心,radius半径,起始和结束角度,是否逆时针;
+     * arcTo(x1,y1,x2,y2,radius):从一点上开始绘制一条弧线,到(x2,y2)为止,并且以一定的半径穿过(x1,y1);
+     * bezierCurvaTo(c1x,c1y,c2x,c2y,x,y):从一点上开始绘制一条曲线,到(x,y)为止,以(c1x,c1y),(c2x,c2y)为控制点;
+     * lineTo(x,y):从一点上开始绘制一条直线,直到(x,y);
+     * moveTo(x,y):将绘图游标移动到(x,y),不画线;
+     * quadraticCurveTo(cx,cy,x,y):从一点上开始绘制二次曲线,到(x,y)为止,并且以(cx,cy)作为控制点;
+     * rect(x,y,width,height):从点(x,y)开始绘制一个矩形,宽度和高度分别是width,height,绘制的是矩形路径,而不是形状;
+     * 想绘制一条连接到起点的线条,可调用closePath();
+     * 若路径已完成,想用fillStyle填充,可调用fill()方法
+     * 对路径描边调用stroke()方法,描边使用strokeStyle
+     * 还可以使用clip()方法,在路径上创建一个剪切区域
+     */
+    var drawing = document.getElementById("drawing");
+    //确定浏览器支持canvas元素
+    if (drawing.getContext) {
+        var context = drawing.getContext("2d");
+
+        //开始路径
+        context.beginPath();
+        //外圆
+        context.arc(100, 100, 99, 0, 2 * Math.PI, false);
+        //内圆
+        context.moveTo(194,100);
+        context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+        //绘制分针
+        context.moveTo(100,100);
+        context.lineTo(100,15);
+        //绘制时针
+        context.moveTo(100,100);
+        context.lineTo(35,100);
+        //描边路径
+        context.stroke();
+    }
+</script>
+</body>
+</html>
