@@ -3,7 +3,7 @@ practice some demo  about &lt;canvas>
 
 
 基本用法:
-1.在body中
+1.在body中使用<canvas>标签
 <canvas id="drawing" width="200" height="200">A drawing of something.</canvas>
 
 2.要在canvas画布上绘图,需要取得绘图上下文,取得绘图上下文的引用调用getContext()方法,并且传入上下文的名字
@@ -18,7 +18,8 @@ practice some demo  about &lt;canvas>
 
 
 3.使用toDataURL()方法,可以导出<canvas>元素上绘制的图像,该方法接受一个参数,即图像的MIME类型格式,而且适用于创建图像的任何上下文
-    if(drawing.getContext){
+   
+   if(drawing.getContext){
         //取得图像的数据URl
         var imgURL = drawing.toDataURL("image/png");
 
