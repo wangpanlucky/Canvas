@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本用法</title>
+</head>
+<body>
+<canvas id="drawing" width="200" height="200">A drawing of something.</canvas>
+
+<script>
+    var drawing = document.getElementById("drawing");
+
+    //确定浏览器支持<canvas>元素
+    //要在canvas画布上绘图,需要取得绘图上下文,取得绘图上下文的引用调用getContext()方法,并且传入上下文的名字
+    //传入2d就可以取得2D上下文对象
+    if(drawing.getContext){
+        var context = drawing.getContext("2d");
+        //填写更多代码
+    }
+
+    if(drawing.getContext){
+        
+    }
+
+
+</script>
+</body>
+
+</html>
