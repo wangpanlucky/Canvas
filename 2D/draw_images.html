@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制图像</title>
+</head>
+<body>
+<canvas id="drawing" width="500" height="500">practice</canvas>
+<img src="../images/liu.jpg">
+<img src="../images/zhou.jpg">
+
+<script>
+/*
+    drawImage()方法将图像绘制在画布上,调用此方法时有三种不同的参数组合:
+    (1)drawImage(image,x,y):html<img>元素,以及绘制图像的起点x,y,绘制出的图像大小和原始大小一样
+    (2)drawImage(image,width,height,x,y):添加width,和height,改变大小
+    (3)drawImage(image,x原,y原,width原,height原,x目,y目,width目,height目):将原始坐标和原始大小,改变为目标位置和目标大小
+*/
+    function draw() {
+        var drawing = document.getElementById("drawing");
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+           /* var liu = document.images[0];
+            var zhou = document.images[1];
+            context.drawImage(liu,0,10,50,50);
+            context.drawImage(zhou,0,10,50,50);*/
+             var img = new Image();
+            img.onload = function () {
+                context.drawImage(img, 100, 100, 100, 100);
+
+            };
+            img.src = '../images/chen.jpg';
+        }
+    }
+    draw();
+
+    /*有几种方式可以获取到我们需要在canvas上使用的图片:
+    * (1)使用相同页面内的图片
+            我们可以通过下列方法的一种来获得与canvas相同页面内的图片的引用：
+            document.images集合
+            document.getElementsByTagName()方法
+            如果你知道你想使用的指定图片的ID,你可以用document.getElementById()获得这个图片
+    * (2)使用其它域名下的图片
+            在HTMLImageElement上使用crossOrigin属性,你可以请求加载其它域名上的图片.如果图片的服务器允许跨域
+            访问这个图片,那么你可以使用这个图片而不污染canvas,否则,使用这个图片将会污染canvas.
+    * (3)使用其它 canvas 元素
+            和引用页面内的图片类似地,用document.getElementsByTagName 或 document.getElementById 方法来获取其它 canvas 元素。
+            但引入的应该是已经准备好的canvas.
+    * (4)由零开始创建图像
+            或者我们可以用脚本创建一个新的 HTMLImageElement 对象。要实现这个方法,可以使用Image()构造函数.
+                var img = new Image();   // 创建一个<img>元素
+                img.src = 'myImage.png'; // 设置图片源地址
+            当脚本执行后，图片开始装载.
+            若调用 drawImage 时，图片没装载完，那什么都不会发生（在一些旧的浏览器中可能会抛出异常）。
+            因此用load时间来保证不会在加载完毕之前使用这个图片.
+    * (5)
+     * */
+</script>
+</body>
+</html>
