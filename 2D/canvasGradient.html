@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渐变</title>
+</head>
+<body style="float: left">
+<canvas id="drawing" width="200" height="200">practice</canvas>
+<canvas id="drawing1" width="200" height="200">practice</canvas>
+
+<script>
+    function draw() {
+        var drawing = document.getElementById("drawing");
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+            //线性渐变createLinearGradient(x起,y起,x终,y终)
+            var gradient = context.createLinearGradient(30,30,70,70);
+             //addColorStop(色标位置,css颜色值)
+             gradient.addColorStop(0,"white");//起点坐标颜色,0表示起点
+             gradient.addColorStop(1,"black");//终点坐标颜色,1表示终点
+
+             context.fillStyle = "#ff0000";
+             context.fillRect(10,10,50,50);
+
+             context.fillStyle = gradient;
+             context.fillRect(30,30,50,50);
+        }
+
+        var drawing1 = document.getElementById("drawing1");
+        if (drawing1.getContext) {
+            var context1 = drawing1.getContext("2d");
+            //径向渐变createRadialGradient(x起,y起,r起,x终,y终,r终),起点圆,终点圆
+            var gradient1 = context1.createRadialGradient(55,55,10,55,55,30);
+
+            gradient1.addColorStop(0,"white");
+            gradient1.addColorStop(1,"black");
+
+            context1.fillStyle = "#ff0000";
+            context1.fillRect(10,10,50,50);
+
+            context1.fillStyle = gradient1;
+            context1.fillRect(30,30,50,50);
+        }
+    }
+    draw();
+</script>
+</body>
+</html>
