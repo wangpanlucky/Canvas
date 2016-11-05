@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阴影</title>
+</head>
+<body style="text-align: center">
+<canvas id="drawing" width="500" height="500">practice</canvas>
+
+<script>
+    function draw() {
+        var drawing = document.getElementById("drawing");
+
+        if(drawing.getContext){
+            var context = drawing.getContext("2d");
+            context.shadowOffsetX = 5;//shadowOffsetX:形状或路径在x轴上的阴影偏移量,默认值0
+            context.shadowOffsetY = 4;//shadowOffsetY:形状或路径在y轴上的阴影偏移量,默认值0
+            context.shadowBlur = 4;   //模糊的像素数:默认值为0,即不模糊
+            context.shadowColor = "rgba(0,0,0,0.5)";//阴影颜色,默认黑色
+
+            context.fillStyle = "#ff0000";
+            context.fillRect(10,10,50,50);
+
+            context.fillStyle = "rgba(0,0,255,0.5)";
+            context.fillRect(50,50,50,50);
+        }
+    }
+    draw();
+</script>
+</body>
+</html>
