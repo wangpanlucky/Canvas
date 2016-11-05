@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变换</title>
+</head>
+<body>
+<canvas id="drawing" width="200" height="200">practice</canvas>
+
+<script>
+    /* 2d上下文变换的方法主要有:
+     *  1.rotate(angle):围绕原点旋转图像angle弧度
+     *  2.scale(scaleX,scaleY):缩放图像,在x方向上乘以scaleX,在y方向上乘以scaleY.scaleX,scaleY默认值都是1.0;
+     *  3.translate(x,y):将原点移动到(x,y);
+     *  4.transform(m1_1,m1_2,m2_1,m2_2,dx,dy):直接修改变换矩阵,方式是乘以如下矩阵:
+             m1_1 m1_2 dx
+             m2_1 m2_2 dy
+             0    0    1
+     *  5.setTransform(m1_1,m1_2,m2_1,m2_2,dx,dy):将变换矩阵重置为默认状态,然后调用transform()
+     * 跟踪上下文的状态变化有两个方法:
+     *  (1)save():保存某组属性与变换的组合
+     *  (2)restore():想要回到保存之前的状态
+     * */
+    var drawing = document.getElementById("drawing");
+    //确定浏览器支持canvas元素
+    if (drawing.getContext) {
+        var context = drawing.getContext("2d");
+        context.beginPath();
+        context.arc(100, 100, 99, 0, 2 * Math.PI, false);//外圆
+        context.moveTo(194, 100);//内圆
+        context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+        //变换原点,原点变为(0,0)后,所有计算都基于(0,0),计算更加方便
+        context.translate(100, 100);
+
+        //还可以使用rotate()来旋转分针
+        context.rotate(1);
+
+        context.moveTo(0,0);
+        context.lineTo(0,-85);
+
+        context.moveTo(0,0);
+        context.lineTo(-65,0);
+
+        context.stroke();
+    }
+</script>
+</body>
+</html>
