@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用图像数据</title>
+</head>
+<body>
+<canvas id="drawing" width="500" height="500">practice</canvas>
+<!--<img src="../images/liu.png" style="height: 150px;width: 200px">-->
+<script>
+    /*
+       通过getImageData()取得原始图像数据,接收四个参数:要取得其数据的的画面区域的x,y坐标,以及该区域的像素宽度和高度
+         imageData = context.getImageData(0, 0, image.width, image.height)
+         imageData有三个属性:width,height,以及data数组
+         data数组包含四个元素:分别表示红,绿,蓝,透明度
+       putImageData()方法将图像显示到页面上
+    */
+    function draw() {
+        var drawing = document.getElementById("drawing");
+
+        if (drawing.getContext) {
+
+            var context = drawing.getContext("2d");
+            /* var image = document.images[0];
+             var imageData, data, i, len, average, red, green, blue, alpha;
+
+             //绘制原始图像
+             context.drawImage(image, 0, 0);
+
+             //取得图像数据
+             imageData = context.getImageData(0, 0, image.width, image.height);
+             data = imageData.data;
+
+             //改变颜色
+             for (i = 0, len = data.length; i < len; i += 4) {
+             red = data[i];
+             green = data[i + 1];
+             blue = data[i + 2];
+             alpha = data[i + 3];
+             //求rgb平均值
+             average = Math.floor((red + green + blue) / 3);
+
+             //设置颜色值,透明度不变
+             data[i] = average;
+             data[i + 1] = average;
+             data[i + 2] = average;
+             }
+             //回写图像数据并显示结果
+             imageData.data = data;
+             context.putImageData(imageData, 0, 0);*/
+            var image = new Image();
+            image.onload = function () {
+                //绘制图像
+                context.drawImage(image, 150, 150, 200, 150);
+
+                var imageData, data, i, len, average, red, green, blue, alpha;
+                //绘制原始图像
+                context.drawImage(image, 0, 0);
+                //取得图像数据
+                imageData = context.getImageData(0, 0, image.width, image.height);
+                data = imageData.data;
+
+                for (i = 0, len = data.length; i < len; i += 4) {
+                    red = data[i];
+                    green = data[i + 1];
+                    blue = data[i + 2];
+                    alpha = data[i + 3];
+                    //求rgb平均值
+                    average = Math.floor((red + green + blue) / 3);
+
+                    //设置颜色值,透明度不变
+                    data[i] = average;
+                    data[i + 1] = average;
+                    data[i + 2] = average;
+                }
+                //回写图像数据并显示结果
+                imageData.data = data;
+                context.putImageData(imageData, 0, 0);
+            };
+            image.src = '../images/liu.png';
+
+        }
+    }
+    draw();
+</script>
+</body>
+</html>
