@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模式</title>
+</head>
+<body>
+<canvas id="drawing" width="900" height="900">practice</canvas>
+<script>
+    /*
+        模式就是重复的图像,可以用来填充或者描边图形
+         创建新模式可调用方法:createPattern()传入两个参数:一个html<img>元素,一个如何重复图像的字符串:
+                            例如:repeat,no-repeat,repeat-x,repeat-y
+    */
+    function draw() {
+        var drawing = document.getElementById("drawing");
+        if(drawing.getContext){
+            var context = drawing.getContext("2d");
+
+            var img = new Image();
+            img.onload = function () {
+
+                var pattern = context.createPattern(img,"repeat");
+
+                context.fillStyle = pattern;
+                context.fillRect(10,10,150,150);
+            };
+            img.src = '../images/cat.png';
+        }
+    }
+
+    draw();
+
+</script>
+</body>
+</html>
