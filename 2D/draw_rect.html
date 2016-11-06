@@ -33,13 +33,13 @@
     var drawing1 = document.getElementById("drawing1");
     //确定浏览器支持canvas元素
     if(drawing1.getContext) {
-        var context1 = drawing1.getContext("2d");
+        var context = drawing1.getContext("2d");
 
-        context1.strokeStyle = "#ff0000";//描边
-        context1.strokeRect(10,10,50,50);
+        context.strokeStyle = "#ff0000";//描边
+        context.strokeRect(10,10,50,50);
 
-        context1.strokeStyle = "rgba(0,0,255,0.5)";
-        context1.strokeRect(30,30,50,50);
+        context.strokeStyle = "rgba(0,0,255,0.5)";
+        context.strokeRect(30,30,50,50);
     }
 
 

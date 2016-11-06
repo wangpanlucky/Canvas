@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>合成</title>
+</head>
+<body>
+<canvas id="drawing" width="200" height="200"></canvas>
+<canvas id="drawing1" width="200" height="200"></canvas>
+<canvas id="drawing2" width="200" height="200"></canvas>
+<canvas id="drawing3" width="200" height="200"></canvas>
+<canvas id="drawing4" width="200" height="200"></canvas>
+
+<script>
+    function draw() {
+        var drawing = document.getElementById("drawing");
+        var drawing1 = document.getElementById("drawing1");
+        var drawing2 = document.getElementById("drawing2");
+        var drawing3 = document.getElementById("drawing3");
+        var drawing4 = document.getElementById("drawing4");
+
+        //globalAlpha属性:介于0~1之间的值,用于所有绘制的透明度,默认值是0
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+            context.fillStyle = "#ff0000";
+            context.fillRect(10, 10, 50, 50);
+            context.globalAlpha = 0.5;//修改全局透明度
+            context.fillStyle = "rgba(0,0,255,1)";
+            context.fillRect(30, 30, 50, 50);
+            context.globalAlpha = 0;//重置全局透明度
+        }
+
+        //globalCompositionOperation表示后绘制图形和先绘制的图形怎样结合
+        if (drawing1.getContext) {
+            var context1 = drawing1.getContext("2d");
+            context1.fillStyle = "#ff0000";
+            context1.fillRect(10, 10, 50, 50);
+            context1.globalCompositeOperation = "source-over";//后绘制的图形在先绘制的图形之上
+            context1.fillStyle = "rgba(0,0,255,1)";
+            context1.fillRect(30, 30, 50, 50);
+        }
+        if (drawing2.getContext) {
+            var context2 = drawing2.getContext("2d");
+            context2.fillStyle = "#ff0000";
+            context2.fillRect(10, 10, 50, 50);
+            context2.globalCompositeOperation = "source-in";//后绘图与先绘图 重叠部分可见,两者其它部分完全透明
+
+            context2.fillStyle = "rgba(0,0,255,1)";
+            context2.fillRect(30, 30, 50, 50);
+        }
+
+        if (drawing3.getContext) {
+            var context3 = drawing3.getContext("2d");
+            context3.fillStyle = "#ff0000";
+            context3.fillRect(10, 10, 50, 50);
+            context3.globalCompositeOperation = "source-out";//后绘图与先绘图 不重叠部分可见,先绘图完全透明
+            context3.fillStyle = "rgba(0,0,255,1)";
+            context3.fillRect(30, 30, 50, 50);
+        }
+        if (drawing4.getContext) {
+            var context4 = drawing4.getContext("2d");
+            context4.fillStyle = "#ff0000";
+            context4.fillRect(10, 10, 50, 50);
+            context4.globalCompositeOperation = "source-atop";//后绘图与先绘图 重叠部分可见,先绘图不受影响
+            context4.fillStyle = "rgba(0,0,255,1)";
+            context4.fillRect(30, 30, 50, 50);
+        }
+        //context1.globalCompositeOperation = "destination-over";//后绘图在先绘图 下方,只有之前透明像素下的部分可见
+        //context1.globalCompositeOperation = "destination-in";//后绘图在先绘图 下方,两者不重叠部分完全透明
+        //context1.globalCompositeOperation = "destination-out";//后绘图 擦除与先绘图 重叠的部分
+        //context1.globalCompositeOperation = "destination-atop";//后绘图在先绘图下方,在两者不重叠的地方,先绘图会变透明
+        // context1.globalCompositeOperation = "lighter";//后绘图与先绘图重叠部分变亮
+        // context1.globalCompositeOperation = "copy";//后绘图完全替代与之重叠的先绘图
+        //context1.globalCompositeOperation = "xor";//后绘图与先绘图重叠的部分执行'异或'操作
+
+    }
+    draw();
+
+</script>
+</body>
+</html>
